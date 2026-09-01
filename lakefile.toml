@@ -1,0 +1,32 @@
+name = "PartitionZheng"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["PartitionZheng"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+# Mathlib's header linter hardcodes its own "Released under Apache 2.0 license"
+# second line. This library is MIT, as LICENSE and every file header say, so the
+# check cannot be satisfied without changing the license.
+weak.linter.style.header = false
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.34.0-rc2"
+
+[[lean_lib]]
+name = "PartitionZheng"
+
+# The comparator pair. Deliberately NOT in defaultTargets: `Challenge` carries a
+# permanent `sorry` (its statements are the artifact), and `lake lint` derives its
+# scope from the default targets. The comparator builds both modules itself.
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
